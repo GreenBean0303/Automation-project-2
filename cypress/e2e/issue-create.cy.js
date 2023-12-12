@@ -86,8 +86,6 @@ describe('Issue create', () => {
       //Type value to description input field
       cy.get('.ql-editor').type('My bug description');
       
-      cy.get('input[name="title"]').type('Bug');
-
       //Select Priority as Highest
       cy.get('[data-testid="select:priority"]').click();
       cy.get('[data-testid="select-option:Highest"]').trigger('click');
@@ -96,6 +94,10 @@ describe('Issue create', () => {
       //Select Pickle Rick from reporter dropdown
       cy.get('[data-testid="select:reporterId"]').click();
       cy.get('[data-testid="select-option:Pickle Rick"]').click();
+
+
+      cy.get('input[name="title"]').type('Bug');
+
 
       //open issue type dropdown and choose Bug  
       cy.get('[data-testid="select:type"]').click();
@@ -156,10 +158,6 @@ describe('Issue create', () => {
   it('Should create a new issue using random data and validate it successfully', () => {
     //System finds modal for creating issue and does next steps inside of it
     cy.get('[data-testid="modal:issue-create"]').within(() => {
-     
-      // Use random data for the title
-      const randomText = faker.random.word();
-      cy.get('input[name="title"]').type(randomText);
 
       // Use random data for the description
       const randomDescription = faker.lorem.words(5);
@@ -185,6 +183,9 @@ describe('Issue create', () => {
       cy.get('[data-testid="select-option:Task"]')
           .trigger('click');
 
+      // Use random data for the title
+      const randomText = faker.random.word();
+      cy.get('input[name="title"]').type(randomText);    
 
       //Click on button "Create issue"
       cy.get('button[type="submit"]').click();
