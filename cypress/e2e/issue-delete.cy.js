@@ -22,7 +22,7 @@ describe('Issue delete', () => {
       cy.contains('This is an issue of type: Task.').should('not.exist');
   });
 
-  
+  const getIssueDetailsModal = () => cy.get('[data-testid="modal:issue-details"]');
 
   it('Cancel the deleting process', () => {
     cy.get('[data-testid="list-issue"]').contains('This is an issue of type: Task').click({force: true})
