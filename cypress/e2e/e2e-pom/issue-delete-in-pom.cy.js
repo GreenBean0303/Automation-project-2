@@ -17,9 +17,25 @@ describe('Issue delete', () => {
 
   it('Should delete issue successfully', () => {
     //add steps to delete issue
+    cy.contains(issueTitle).click({force: true})
+    IssueModal.clickDeleteButton()
+    IssueModal.confirmDeletion({force: true})
+
+    // Assert that the issue was deleted successfully
+    IssueModal.ensureIssueIsNotVisibleOnBoard(issueTitle)
+
   });
+
 
   it('Should cancel deletion process successfully', () => {
     //add steps to start deletion proces but cancel it
+    cy.contains(issueTitle).click({force: true})
+    IssueModal.clickDeleteButton();
+    IssueModal.cancelDeletion();
+    IssueModal.closeDetailModal()
+
+    //Assert that issue is not deleted
+    IssueModal.ensureIssueIsVisibleOnBoard(issueTitle)
   });
+
 });
