@@ -31,7 +31,7 @@ describe('Should add, edit and delete time estimation and tracking', () => {
         });
     });
 
-    it.only('Should add and delete time tracking', () => {
+    it('Should add and delete time tracking', () => {
         //Should add estimation again
         getIssueDetailsModal().within(() => {
             cy.get('[placeholder="Number"]').should("be.visible").clear().type(estimatedTime)
