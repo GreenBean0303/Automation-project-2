@@ -22,8 +22,10 @@ describe('Issue comments creating, editing and deleting', () => {
     const deleteAndTypeNewComment = () => clickCommentTextField().should('contain', previousComment).clear().type(newComment)
     const verifyEditAndComment = () => cy.get('[data-testid="issue-comment"]').should('contain', 'Edit').and('contain', newComment)
     const deleteFirstIssueComment = () => issueCommentTestId().contains('Delete').click()
-    const confirmDeleteComment = () =>  cy.get('[data-testid="modal:confirm"]').contains('button', 'Delete comment').click().should('not.exist');
+    const confirmDeleteComment = () =>  cy.get('[data-testid="modal:confirm"]').contains('button', 'Delete comment').click().should('not.exist')
     const verifyIssueCommentNotExists = () => getIssueDetailsModal().find(issueCommentTestId).should('not.exist')
+    
+
 
     it('Should create a comment successfully, edit the comment successfully and then delete it after', () => {
        
@@ -38,8 +40,12 @@ describe('Issue comments creating, editing and deleting', () => {
             clickAndVerifySaveButton()
             verifyEditAndComment()
             deleteFirstIssueComment()
-            confirmDeleteComment()
-            verifyIssueCommentNotExists()
         });
+
+        // Handle the deletion confirmation pop-up outside the within block
+        confirmDeleteComment();
+        
+        // Finally, verify the comment does not exist anymore
+        verifyIssueCommentNotExists();
     });
 });
