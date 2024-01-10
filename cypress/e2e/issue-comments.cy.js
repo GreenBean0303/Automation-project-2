@@ -30,15 +30,20 @@ describe('Issue comments creating, editing and deleting', () => {
     it('Should create a comment successfully, edit the comment successfully and then delete it after', () => {
        
         getIssueDetailsModal().within(() => {
+            //Should add a comment
             clickAddComment()
             enterComment()
+            // Should assert that comment has been added and is visible
             clickAndVerifySaveButton()
             verifyPlaceholder()
             verifyComment()
+            //Should edit the added comment
             clickFirstIssueCommentEdit()
             deleteAndTypeNewComment()
+            // Should assert that the updatedd comment is visible
             clickAndVerifySaveButton()
             verifyEditAndComment()
+            //Should remove the comment
             deleteFirstIssueComment()
         });
 
