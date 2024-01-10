@@ -47,10 +47,10 @@ describe('Issue comments creating, editing and deleting', () => {
             deleteFirstIssueComment()
         });
 
-        // Handle the deletion confirmation pop-up outside the within block
+       //Should handle the deletetion outside the within
         confirmDeleteComment();
         
-        // Finally, verify the comment does not exist anymore
+        // Should verify the comment does not exist anymore
         verifyIssueCommentNotExists();
     });
 });
